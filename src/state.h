@@ -6,12 +6,14 @@
  * File Name: state.h
  */
 
- #ifndef state_h
- #define state_h
+#ifndef state_h
+#define state_h
 
- typedef struct state state_t; // Skeleton/Arbitrary State
+typedef struct state state_t; // Skeleton/Arbitrary State
 
- typedef state_t* event_handler(void); // Skeleton/Arbitrary Event Handler
+typedef state_t* event_handler(void); // Skeleton/Arbitrary Event Handler
+
+typedef void action(void); // Skeleton/Arbitrary Action
 
  struct state {
     event_handler* order_received;

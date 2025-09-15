@@ -18,12 +18,12 @@ extern state_t manufacturing;
 extern state_t processing;
 extern state_t shipping;
 
-/*
+/**
  * Prints state names depending on the current state.
  */
 void printStateName(void);
 
-/*
+/**
  * Handles events given by the driver class.
  *
  * @param current_event: The event the driver class

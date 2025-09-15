@@ -1,0 +1,67 @@
+/* Assignment: PA-01 FSM
+ * Date: 09/14/2025
+ *
+ * Team #: FSM-PA Team 13
+ * Authors : Aiden Aquino, William Hudson
+ * File Name: driver.c
+ */
+
+ #include "system.h"
+ #include "statemodel.h"
+ #include <stdio.h>
+
+ state_t* current_state = &accepting;
+
+ int main (void)
+ {
+    event current_event;
+    int key;
+
+    while ((key = getchar()) != 'x')
+    {
+        if (key == '\n')
+            continue;
+
+        current_event = INVALID_EVENT;
+
+        switch (key)
+        {
+            case 'O':
+                current_event = ORDER_RECIEVED;
+                puts("Event: ORDER_RECIEVED");
+                break;
+            case 'V':
+                current_event = VALID_PAYMENT;
+                puts("Event: VALID_PAYMENT");
+                break;
+            case 'I':
+                current_event = INVALID_PAYMENT;
+                puts("Event: INVALID_PAYMENT");
+                break;
+            case 'F':
+                current_event = MANUFACTURE_FAILED;
+                puts("Event: MANUFACTURE_FAILED");
+                break;
+            case 'C':
+                current_event = MANUFACTURE_COMPLETED;
+                puts("Event: MANUFACTURE_COMPLETED");
+                break;
+            case 'R':
+                current_event = SHIPMENT_ARRIVED;
+                puts("Event: SHIPMENT_ARRIVED");
+                break;
+            case 'L':
+                current_event = SHIPMENT_LOST;
+                puts("Event: SHIPMENT_LOST");
+                break;
+            default:
+                puts("Event: INVALID_EVENT");
+        }
+
+        if (current_event != INVALID_EVENT)
+            handle_event(current_event);
+    }
+
+    printf("\n");
+    fflush(stdout);
+ }
