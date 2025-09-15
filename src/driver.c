@@ -27,8 +27,8 @@
         switch (key)
         {
             case 'O':
-                current_event = ORDER_RECIEVED;
-                puts("Event: ORDER_RECIEVED");
+                current_event = ORDER_RECEIVED;
+                puts("Event: ORDER_RECEIVED");
                 break;
             case 'V':
                 current_event = VALID_PAYMENT;
