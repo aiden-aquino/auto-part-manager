@@ -30,11 +30,28 @@ typedef enum
 } event;
 #define INVALID_EVENT -1
 
-/**
- * Controls/Prints the status of the package.
- *
- * @param value status value to switch the package to.
- */
-void set_stats_value(stats_setting value);
+void getOrderSize();
 
+void resetAttempts();
+
+void getPymntMethod();
+
+void paymentRejected();
+
+int incrementAttempts();
+
+void dispatchFactoryLines();
+
+void shutDownFactoryLines();
+
+void chargeClient();
+
+void getAddress();
+
+void startWarranty();
+
+void refund();
+
+// Function for controlling the status of the shipment.
+void updateStats(stats_setting value);
 #endif
