@@ -13,7 +13,7 @@ int invalidAttempts = 0;
 
 void getOrderSize()
 {
-    printf("Got an order of size 0 items\n");
+    printf("Got an order of size = 0 items\n");
 }
 
 void resetAttempts()
@@ -52,11 +52,9 @@ void shutDownFactoryLines()
 void updateStats(stats_setting value)
 {
     printf("Updating Statistics for ");
-    if (value == STAT_DONE) printf("SUCCESSFUL");
-    else if (value == STAT_LOST) printf("LOST");
-    else if (value == STAT_FAIL) printf("FAIL");
-
-    printf(" orders\n");
+    if (value == STAT_DONE) printf("SUCCESSFUL orders\n");
+    else if (value == STAT_LOST) printf("LOST packages\n");
+    else if (value == STAT_FAIL) printf("FAILED manufacturing\n");
 }
 
 void chargeClient()

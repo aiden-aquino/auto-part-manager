@@ -17,7 +17,10 @@
     event current_event;
     int key;
 
-    while ((key = getchar()) != 'x')
+    printStateName();
+    current_state -> entry_to();
+
+    while ((key = getchar()) != 'X')
     {
         if (key == '\n')
             continue;

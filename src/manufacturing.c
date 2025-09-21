@@ -12,7 +12,7 @@
 extern state_t* default_event_handler();
 extern void default_action();
 
- state_t processing  = {
+ state_t manufacturing  = {
     default_event_handler, // Order_recieved
     default_event_handler, // Invalid Payment
     default_event_handler, // Valid Payment
@@ -26,15 +26,15 @@ extern void default_action();
 
 state_t* manufacture_failed()
 {
-    updateStats(STAT_FAIL);
     exit_to_manufacturing();
+    updateStats(STAT_FAIL);
     return &accepting;
 }
 
  state_t* manufacture_completed()
  {
-    chargeClient();
     exit_to_manufacturing();
+    chargeClient();
     return &shipping;
  }
 

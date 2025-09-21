@@ -7,7 +7,7 @@
  */
 
  #ifndef manufacturing_h
- #define opening_h
+ #define manufacturing_h
 
 
  #include "state.h"

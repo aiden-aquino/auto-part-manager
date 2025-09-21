@@ -7,7 +7,7 @@
  */
 
  #ifndef processing_h
- #define opening_h
+ #define processing_h
 
 
  #include "state.h"

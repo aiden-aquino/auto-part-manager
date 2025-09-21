@@ -7,7 +7,7 @@
  */
 
  #ifndef shipping_h
- #define opening_h
+ #define shipping_h
 
 
  #include "state.h"

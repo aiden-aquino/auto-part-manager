@@ -12,7 +12,7 @@
 extern state_t* default_event_handler();
 extern void default_action();
 
- state_t processing  = {
+ state_t shipping  = {
     default_event_handler, // Order_recieved
     default_event_handler, // Invalid Payment
     default_event_handler, // Valid Payment

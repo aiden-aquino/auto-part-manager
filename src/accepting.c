@@ -28,4 +28,5 @@ state_t* order_received()
 {
     getOrderSize();
     resetAttempts();
+    return &processing;
 }
