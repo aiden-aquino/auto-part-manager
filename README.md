@@ -8,21 +8,37 @@ This project implements a Finite State Machine (FSM) that manages the lifecycle 
 
 ## System Description
 
-The system simulates an automated manufacturing process for custom auto parts. It starts in a listening state, waiting for incoming orders, and progresses through several operational states until the order is completed and the system resets for the next request.
+The system begins in a Listening (Accepting) state, waiting for an incoming order. Once an order is received, it progresses through several controlled states:
 
-Each order includes:
-- A single type of auto part
-- A quantity representing the number of replicas to produce
-- Payment information (e.g., credit card details)
+Accepting (Listening) — Waits for incoming orders.
+Processing — Validates payment information.
+Manufacturing — Produces the required quantity of the ordered auto part.
+Shipping — Ships the completed order and confirms delivery.
+
+Once delivery is confirmed, the order is closed and the system returns to the Accepting state to await the next order.
 
 ---
 
+## Event Input Table
+
+| **Character** | **Event Description**                        | **Triggered Action / Meaning**                   |
+| :-----------: | -------------------------------------------- | ------------------------------------------------ |
+|     **O**     | Order received                               | Move from **Accepting** to **Processing**        |
+|     **V**     | Payment validated                            | Transition to **Manufacturing**                  |
+|     **I**     | Payment rejected                             | Return to **Accepting**                          |
+|     **F**     | Factory failed to manufacture all replicas   | Return to **Accepting**                          |
+|     **C**     | Factory successfully completed manufacturing | Transition to **Shipping**                       |
+|     **R**     | Delivery confirmed                           | Return to **Accepting** (order closed)           |
+|     **L**     | Delivery failed                              | Return to **Accepting**                          |
+|     **X**     | Exit the program immediately                 | Program terminates (future cleanup may be added) |
+
+
+--
+
 ## Skills Demonstrated
-- Parsing binary file formats (Mini-Elf/Y86)
-- Memory inspection and representation
-- Disassembly of code and data sections
-- Simulating program execution with debug tracing
-- Command-line argument parsing and validation
+- Designed and implemented a Finite State Machine (FSM)
+- Built an event-driven system reacting to user inputs and transitions
+- Structured code into modular .c / .h files for maintainability
 
 ---
 
@@ -30,23 +46,15 @@ Each order includes:
 
 *This project is designed to be built and run on **Linux**. The makefile uses Unix commands and will most likely not work on native Windows.*<br>
 
-From the project root (mini-elf/), run:
-```y86 <option(s)> mini-elf-file```
+From the project root, run:
+```make```
 
-### Note
+Then run the driver.o file with:
+```./driver```
 
-There are provided Mini-Elf object files provided in the /tests/inputs directory.
+---
 
-## Options
-| **Character** | **Event Description**                          | **Triggered Action / Meaning**                                      |
-| :-----------: | ---------------------------------------------- | ------------------------------------------------------------------- |
-|     **O**     | Order received                                 | Moves the system from **Listening** → **Processing Payment**        |
-|     **V**     | Payment validated                              | Payment confirmed; transition to **Manufacturing**                  |
-|     **I**     | Payment rejected                               | Invalid or expired payment; return to **Listening** for a new order |
-|     **F**     | Factory failed to manufacture all replicas     | Manufacturing error; order canceled → **Listening**                 |
-|     **C**     | Factory successfully manufactured all replicas | Manufacturing complete; transition to **Shipping**                  |
-|     **R**     | Delivery confirmed                             | Shipment successful; transition to **Closed**                       |
-|     **L**     | Delivery failed                                | Shipment issue detected; order canceled → **Listening**             |
-|     **X**     | Terminate program                              | Immediately exit the system (cleanup to be added in later phases)   |
+## Note
 
-**Options cannot be repeated**
+There are given tests and expected outputs within the tests/ directory. Each tests/input is a .txt file with a chain of valid inputs and can be passed into the driver.o file using:
+```./driver < /tests/inputs/{any of the .txt files}```
