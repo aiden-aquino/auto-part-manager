@@ -33,7 +33,7 @@ Once delivery is confirmed, the order is closed and the system returns to the Ac
 |     **X**     | Exit the program immediately                 | Program terminates (future cleanup may be added) |
 
 
---
+---
 
 ## Skills Demonstrated
 - Designed and implemented a Finite State Machine (FSM)
